@@ -14,8 +14,8 @@ PACKAGE=com.upstandinghackers.hammer
 
 include ../common.mk
 
-JNI_INCLUDE := /usr/lib/jvm/java-6-openjdk/include/
-CFLAGS += -fPIC -I. -I $(TOPLEVEL)/src/ -I jni -I $(JNI_INCLUDE) 
+
+CFLAGS += -fPIC -I. -I $(TOPLEVEL)/src/ -I jni -I $(JAVA_HOME)/include -I $(JAVA_HOME)/include/linux
 
 %.java: $(call ifsilent,| $(HUSH))
 	$(call hush, "Compiling Java source $@") $(JC) $(CP)/$@
@@ -23,7 +23,7 @@ CFLAGS += -fPIC -I. -I $(TOPLEVEL)/src/ -I jni -I $(JNI_INCLUDE)
 all: javacc prepare compile link
 
 link: compile
-	$(call hush, "Generating libjhammer.so") $(CC) -shared $(CFLAGS) -o libjhammer.so *.o ../src/*.o ../src/backends/*.o ../src/parsers/*.o
+	$(call hush, "Generating libjhammer.so") $(CC) -shared $(CFLAGS) -o libjhammer.so *.o ../build/opt/src/*.os ../build/opt/src/backends/*.os ../build/opt/src/parsers/*.os
 
 $(CSOURCES): prepare
 	$(call hush, "Compiling $@") $(CC) -c $(CFLAGS) $@
