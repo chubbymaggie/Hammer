@@ -21,7 +21,7 @@ public class ParsedToken
     public native ParsedToken[] getSeqValue();
 //    public native Object getUserValue();
 
-    native void setTokenType(Hammer.TokenType type);
+    public native void setTokenType(Hammer.TokenType type);
     native void setIndex(int index);
     native void setBitOffset(byte offset);
     native void setBytesValue(byte[] value);
