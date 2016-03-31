@@ -10,7 +10,7 @@ public class ParsedToken
         return Hammer.tokenTypeMap.get(new Integer(tt));
     }
 
-    private native int getTokenTypeInternal();
+    public native int getTokenTypeInternal();
     public native int getIndex();
     public native byte getBitOffset();
     public native byte[] getBytesValue();
@@ -20,8 +20,9 @@ public class ParsedToken
     public native float getFloatValue();
     public native ParsedToken[] getSeqValue();
 //    public native Object getUserValue();
+    public native void setUserTokenType(int typeValue);
 
-    public native void setTokenType(Hammer.TokenType type);
+    native void setTokenType(Hammer.TokenType type);
     native void setIndex(int index);
     native void setBitOffset(byte offset);
     native void setBytesValue(byte[] value);
