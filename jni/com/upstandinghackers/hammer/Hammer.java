@@ -51,7 +51,7 @@ public class Hammer
     public static native Parser left(Parser p, Parser q);
     public static native Parser right(Parser p, Parser q);
     public static native Parser middle(Parser p, Parser x, Parser q);
-//    public static native Parser action(Parser p, Action a);
+    public static native Parser action(Parser p, String a);
     public static native Parser in(byte[] charset, int length);
     public static native Parser endP();
     public static native Parser nothingP();

@@ -92,6 +92,13 @@ JNIEXPORT jobjectArray JNICALL Java_com_upstandinghackers_hammer_ParsedToken_get
     return retVal;
 }
 
+JNIEXPORT void JNICALL Java_com_upstandinghackers_hammer_ParsedToken_setUserTokenType
+  (JNIEnv *env, jobject this, jint tokenType)
+{
+    HPT_UNWRAP(env, this);
+    inner->token_type = (int32_t) tokenType;
+}
+
 JNIEXPORT void JNICALL Java_com_upstandinghackers_hammer_ParsedToken_setTokenType
   (JNIEnv *env, jobject this, jobject tokenType)
 {
