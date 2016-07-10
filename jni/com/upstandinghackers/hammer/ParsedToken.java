@@ -22,16 +22,16 @@ public class ParsedToken
 //    public native Object getUserValue();
     public native void setUserTokenType(int typeValue);
 
-    native void setTokenType(Hammer.TokenType type);
-    native void setIndex(int index);
-    native void setBitOffset(byte offset);
-    native void setBytesValue(byte[] value);
-    native void setSIntValue(long value);
-    native void setUIntValue(long value);
-    native void setDoubleValue(double value);
-    native void setFloatValue(float value);
-    native void setSeqValue(ParsedToken value[]);
-//    native void setUserValue(Object value);
+    public native void setTokenType(Hammer.TokenType type);
+    public native void setIndex(int index);
+    public native void setBitOffset(byte offset);
+    public native void setBytesValue(byte[] value);
+    public native void setSIntValue(long value);
+    public native void setUIntValue(long value);
+    public native void setDoubleValue(double value);
+    public native void setFloatValue(float value);
+    public native void setSeqValue(ParsedToken value[]);
+//    public native void setUserValue(Object value);
     
 //    public native void free();
     public long getInner() {return this.inner;}
