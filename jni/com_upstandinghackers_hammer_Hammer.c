@@ -18,6 +18,8 @@ JNIEXPORT jobject JNICALL Java_com_upstandinghackers_hammer_Hammer_parse
     length = (size_t) length_;
 
     result = h_parse(parser, input, length);
+
+    (*env)->ReleaseByteArrayElements(env,input_,(jbyte*)input,0);
     
     if(result==NULL)
         return NULL;
@@ -30,9 +32,13 @@ JNIEXPORT jobject JNICALL Java_com_upstandinghackers_hammer_Hammer_parse
 }
 
 JNIEXPORT jobject JNICALL Java_com_upstandinghackers_hammer_Hammer_token
-  (JNIEnv *env, jclass class, jbyteArray str, jint len)
+  (JNIEnv *env, jclass class, jbyteArray str_, jint len)
 {
-    RETURNWRAP(env, h_token((uint8_t *) ((*env)->GetByteArrayElements(env, str, NULL)), (size_t) len));
+    uint8_t* str = (uint8_t *) ((*env)->GetByteArrayElements(env, str_, NULL));
+    HParser *parser = h_token(str, (size_t) len);
+    (*env)->ReleaseByteArrayElements(env,str_,(jbyte*)str,0);
+
+    RETURNWRAP(env, parser);
 }
 
 JNIEXPORT jobject JNICALL Java_com_upstandinghackers_hammer_Hammer_ch
@@ -151,9 +157,12 @@ JNIEXPORT jobject JNICALL Java_com_upstandinghackers_hammer_Hammer_middle
 
 
 JNIEXPORT jobject JNICALL Java_com_upstandinghackers_hammer_Hammer_in
-  (JNIEnv *env, jclass class, jbyteArray charset, jint length)
+  (JNIEnv *env, jclass class, jbyteArray charset_, jint length)
 {
-    RETURNWRAP(env, h_in((uint8_t *) ((*env)->GetByteArrayElements(env, charset, NULL)), (size_t)length));
+    uint8_t *charset = (uint8_t *) (*env)->GetByteArrayElements(env, charset_, NULL);
+    HParser *parser = h_in(charset, (size_t)length);
+    (*env)->ReleaseByteArrayElements(env,charset_,(jbyte*)charset,0);
+    RETURNWRAP(env, parser);
 }
 
 

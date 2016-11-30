@@ -24,3 +24,6 @@ build/
 *.os
 *.pyc
 target/
+/.classpath
+/.project
+/.settings

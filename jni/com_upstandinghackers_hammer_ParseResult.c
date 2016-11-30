@@ -40,6 +40,7 @@ JNIEXPORT jlong JNICALL Java_com_upstandinghackers_hammer_ParseResult_getBitLeng
 JNIEXPORT void JNICALL Java_com_upstandinghackers_hammer_ParseResult_free
   (JNIEnv *env, jobject this)
 {
-    //XXX: NOT IMPLEMENTED
+    h_parse_result_free(unwrap_parse_result(env, this));
+    (*env)->DeleteLocalRef(env, this);
 }
 
